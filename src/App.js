@@ -9,6 +9,7 @@ import Feedback from "./Feedback";
 import Home from "./Home";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Header />
         <Bookmarks />
         <Switch>
+          <Route path="/profile" component={UserProfile} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signout" component={SignUp} />
           <Route path="/home" component={Home} />
