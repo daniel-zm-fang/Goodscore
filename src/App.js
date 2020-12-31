@@ -7,6 +7,8 @@ import Explore from "./Explore";
 import Community from "./Community";
 import Feedback from "./Feedback";
 import Home from "./Home";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
         <Header />
         <Bookmarks />
         <Switch>
-          <Route path="/home" exact component={Home} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signout" component={SignUp} />
+          <Route path="/home" component={Home} />
           <Route path="/practice" component={Practice} />
           <Route path="/explore" component={Explore} />
           <Route path="/community" component={Community} />

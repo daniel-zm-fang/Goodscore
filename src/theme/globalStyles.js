@@ -43,9 +43,15 @@ const GlobalStyle = createGlobalStyle`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
     padding: 10rem 5rem;
     border-radius: 1rem;
-    background-color: gray;
+    background-color: white;
+    color: black;
+  }
+
+  .signButton {
+    border-radius: 0.5rem;
   }
 `;
 
