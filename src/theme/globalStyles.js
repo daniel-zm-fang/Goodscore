@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: grey;
   }
 
-  .button{
+  .button {
     color: white;
     text-decoration: none;
     border-radius: 0.5rem;
@@ -42,16 +42,30 @@ const GlobalStyle = createGlobalStyle`
     position: fixed;
     top: 50%;
     left: 50%;
+    width: 300px;
     transform: translate(-50%, -50%);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
-    padding: 10rem 5rem;
+    padding: 3rem 2rem;
     border-radius: 1rem;
     background-color: white;
     color: black;
+    text-align: center;
   }
 
   .signButton {
-    border-radius: 0.5rem;
+    background-color: orange;
+    :hover{
+      opacity: 80%;
+    }
+  }
+
+  .centerSignBox input {
+    display: block;
+    margin: 1rem auto;
+    padding: 10px;
+    width: 80%;
+    border-radius:5px;
+    border: 1px solid;
   }
 `;
 

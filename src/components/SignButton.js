@@ -13,14 +13,13 @@ const StyledLink = styled(Link)`
   float: left;
 
   :hover {
-    opacity: 50%;
+    margin-top: 0.3rem;
   }
 `;
 
 function SignButton({ name, link, backgroundcolor }) {
   return (
     <div>
-      {" "}
       <StyledLink
         className="button"
         backgroundcolor={backgroundcolor}

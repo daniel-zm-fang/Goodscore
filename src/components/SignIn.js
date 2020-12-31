@@ -9,15 +9,25 @@ class SignInPage extends Component {
         <div className="centerSignBox">
           <h2>Sign In</h2>
           <form>
-            <label for="Email">Email:</label>
-            <input type="text" id="email" name="email" required />
-            <br />
-            <label for="Password">Password:</label>
-            <input type="text" id="password" name="password" required />
-            <br />
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              type="text"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
             <Link to="/home/">
               <input class="signButton" type="submit" value="Sign in" />
             </Link>
+            <hr />
+            Forget password?
           </form>
         </div>
       </div>,

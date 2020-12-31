@@ -20,26 +20,33 @@ function SignUpPage() {
       <div className="centerSignBox">
         <h2>Sign Up</h2>
         <form>
-          <label for="Email">Email:</label>
-          <input type="text" id="email" name="email" required />
-          <br />
-          <label for="password">Password:</label>
-          <input type="text" id="password" name="password" required />
-          <br />
-          <label for="passwordConfirm">Confirm password:</label>
           <input
             type="text"
-            id="passwordConfirm"
-            name="passwordConfirm"
+            id="email"
+            name="email"
+            placeholder="Email"
             required
           />
-          <br />
+          <input
+            type="text"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <input
+            type="text"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            required
+          />
           <Link to="/home/">
             <input class="signButton" type="submit" value="Sign up" />
           </Link>
           <hr />
           Already have an account?
-          <Link to="/signin">Log In</Link>
+          <Link to="/signin"> Log In</Link>
         </form>
       </div>
     </div>,
