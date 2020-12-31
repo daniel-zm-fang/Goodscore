@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SignButton from "./SignButton";
-import SignInPage from "./SignInPage";
-import SignUpPage from "./SignUpPage";
 import UserProfile from "./UserProfile";
 
 const StyledHeader = styled.div`
+  position: relative;
   width: 100%;
   padding: 1.2rem;
-  position: relative;
-  backdrop-filter: blur(1rem);
+  background-color: white;
 `;
 
 const StyledTitle = styled(Link)`
@@ -32,18 +30,8 @@ class Header extends Component {
 
     this.state = {
       isUserLoggedIn: false,
-      showSignInPage: false,
-      showSignUpPage: false,
     };
   }
-
-  handleSignIn = () => {
-    this.setState({ showSignInPage: !this.state.showSignInPage });
-  };
-
-  handleSignUp = () => {
-    this.setState({ showSignUpPage: !this.state.showSignUpPage });
-  };
 
   render() {
     let userStatus;
@@ -52,22 +40,12 @@ class Header extends Component {
     } else {
       userStatus = (
         <>
-          <SignButton
-            name="Sign In"
-            backgroundcolor="blue"
-            onClick={this.handleSignIn}
-          />
+          <SignButton name="Sign In" backgroundcolor="blue" link="/signin" />
           <SignButton
             name="Create free acount"
             backgroundcolor="green"
-            onClick={this.handleSignUp}
+            link="/signout"
           />
-          {this.state.showSignInPage ? (
-            <SignInPage onClose={this.handleSignIn} />
-          ) : null}
-          {this.state.showSignUpPage ? (
-            <SignUpPage onClose={this.handleSignUp} />
-          ) : null}
         </>
       );
     }

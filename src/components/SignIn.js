@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 
 class SignInPage extends Component {
   render() {
     return ReactDOM.createPortal(
       <div className="darkenEntireWebsite">
         <div className="centerSignBox">
-          Sign In
+          <h2>Sign In</h2>
           <form>
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" />
+            <label for="Email">Email:</label>
+            <input type="text" id="email" name="email" required />
             <br />
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password" />
+            <label for="Password">Password:</label>
+            <input type="text" id="password" name="password" required />
             <br />
-            <input type="submit" value="Sign in" />
+            <Link to="/home/">
+              <input class="signButton" type="submit" value="Sign in" />
+            </Link>
           </form>
         </div>
       </div>,
