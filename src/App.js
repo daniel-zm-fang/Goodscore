@@ -3,18 +3,20 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import UserProfile from "./components/UserProfile";
 import Dashboard from "./dashboard/Dashboard";
-import Header from "./home/Header.js"
+import Header from "./home/Header.js";
+import SignIn from "./auth/SignIn";
 
 function App() {
   return (
     <Router>
-        <GlobalStyle />
-        <Header />
-        <Switch>   
-          <Route path="/profile" component={UserProfile} />
-          <Route path="/home" component={HomePage} />
-          <Route path="/dashboard" component={Dashboard} />      
-        </Switch>
+      <GlobalStyle />
+      <Header />
+      <Switch>
+        <Route path="/signin" component={SignIn} />
+        <Route path="/profile" component={UserProfile} />
+        <Route path="/home" component={HomePage} />
+        <Route path="/dashboard" component={Dashboard} />
+      </Switch>
     </Router>
   );
 }

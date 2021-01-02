@@ -1,5 +1,5 @@
 import React from "react";
-import { Fade, Jumbotron, Image, Container, Row, Col} from "react-bootstrap";
+import { Fade, Jumbotron, Image, Container, Row, Col } from "react-bootstrap";
 import Background from "./images/home_bg.jpg";
 
 const jumboStyle = {
@@ -28,18 +28,21 @@ export default function HomePage() {
       <Container>
         <Row>
           <Col>
-            <Image src="https://www.clipartmax.com/png/middle/212-2120389_hourglass-icon-sand-timer-png-icon.png" height="140px"/>
+            <Image
+              src="https://www.clipartmax.com/png/middle/212-2120389_hourglass-icon-sand-timer-png-icon.png"
+              height="140px"
+            />
             <h2 className="text-center">Practice</h2>
             <p className="text-center">Some Description</p>
           </Col>
           <Col>
             <Image src="src/home/images/clock.jpg" round />
-            <h2 className="text-center">Practice</h2>
+            <h2 className="text-center">Explore</h2>
             <p className="text-center">Some Description</p>
           </Col>
           <Col>
             <Image src="src/home/images/clock.jpg" round />
-            <h2 className="text-center">Practice</h2>
+            <h2 className="text-center">Community</h2>
             <p className="text-center">Some Description</p>
           </Col>
         </Row>
