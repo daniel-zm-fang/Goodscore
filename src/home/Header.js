@@ -2,46 +2,55 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import SignIn from "../auth/SignIn";
 import SignUp from "../auth/SignUp";
-
-// userStatus = <Nav.Link as={Link} to="/home">Sign Out</Nav.Link>;
-// <Nav.Link as={Link} to="/signin" onClick={handleShow}>Log in</Nav.Link>
-// <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSignUp, setSignUp] = useState(false);
+  const [isSubmit, setSubmit] = useState(false);
   const handleSignInClose = () => setIsLoggedIn(false);
   const handleSignInShow = () => setIsLoggedIn(true);
   const handleSignUpClose = () => setSignUp(false);
   const handleSignUpShow = () => setSignUp(true);
+  const handleSubmitTrue = () => setSubmit(true);
+  const handleSubmitFalse = () => setSubmit(false);
 
   let status;
-  if (isLoggedIn) {
-    status = <>
-    <Link to="\home">
-        <Button variant="primary" onClick={handleSignInShow}>
+  if (!isLoggedIn && isSubmit) {
+    status = (
+      <>
+        <Button onClick={handleSubmitFalse} as={Link} to="/home">
           Sign Out
         </Button>
-    </Link>
-    </>
+      </>
+    );
   } else {
-    status = <>
-        <Button variant="primary" onClick={handleSignInShow}>
+    status = (
+      <>
+        <Button className="mx-2" onClick={handleSignInShow}>
           Sign In
         </Button>
-        <Button variant="primary" onClick={handleSignUpShow}>
+        <Button className=" btn-success" onClick={handleSignUpShow}>
           Sign Up
         </Button>
-        <SignIn logIn={isLoggedIn} open={handleSignInShow} close={handleSignInClose} />
-        <SignUp signUp={isSignUp} open={handleSignUpShow} close={handleSignUpClose} />
-        </>
+        <SignIn
+          logIn={isLoggedIn}
+          open={handleSignInShow}
+          close={handleSignInClose}
+          submit={handleSubmitTrue}
+        />
+        <SignUp
+          signUp={isSignUp}
+          open={handleSignUpShow}
+          close={handleSignUpClose}
+        />
+      </>
+    );
   }
   return (
     <Navbar bg="dark" variant="dark">
-      <Navbar.Brand style={{ marginLeft: "1rem" }} as={Link} to="/home">
+      <Navbar.Brand className="mx-3" as={Link} to="/home">
         Goodscore
       </Navbar.Brand>
       <Nav className="ml-auto" style={{ marginRight: "1rem" }}>
