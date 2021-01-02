@@ -1,26 +1,11 @@
 import { createGlobalStyle } from "styled-components";
-import Background from "./piano.jpg";
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    overflow-x: hidden;
-    background-image: url(${Background});
-    font-family: Open-Sans, Helvetica, Sans-Serif;
-    color:white;
-    width: 100%;
-    height: 100%;
-    min-width: 1000px;
-    min-height: 800px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0;
-  }
-
   .notHome {
     padding: 1rem;
     margin: 1rem;
-    background-color: grey;
+    background-color: green;
+
   }
 
   .button {
@@ -52,14 +37,7 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
   }
 
-  .signButton {
-    background-color: orange;
-    :hover{
-      opacity: 80%;
-    }
-  }
-
-  .centerSignBox input {
+  .signBox input {
     display: block;
     margin: 1rem auto;
     padding: 10px;

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+
+
 class Practice extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,14 @@ class Practice extends Component {
   clickHandler = () => {
     alert(`Clicked`);
   };
+
+  componentDidMount() {
+    fetch("/test")
+      .then(res => res.json())
+      .then(data => {
+        
+      })
+  }
 
   render() {
     return (

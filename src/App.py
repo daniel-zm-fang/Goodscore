@@ -10,3 +10,4 @@ from werkzeug.utils import secure_filename
 IMAGE_UPLOADS = '/home/Erick3/mysite/static/uploads/images'
 MUSIC_UPLOADS = '/home/Erick3/mysite/static/uploads/music'
 ALLOWED_EXTENSIONS = {'mp3', 'png', 'jpg', 'jpeg'}
+
