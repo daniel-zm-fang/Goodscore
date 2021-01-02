@@ -6,17 +6,17 @@ const port = 8080
 var testData = [{
   name: 'song1',
   composer: 'edward',
-  completion: 50
+  progress: 50
 },
 {
   name: 'song2',
   composer: 'daniel',
-  completion: 80
+  progress: 80
 },
 {
   name: 'song3',
   composer: 'eric',
-  completion: 100
+  progress: 100
 }
 ]
 
