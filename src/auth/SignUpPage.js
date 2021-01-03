@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Alert, Form, Button, Modal } from "react-bootstrap";
 import { useAuth } from "../components/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function SignUpPage({ show, open, close, switchToSignIn }) {
   const emailRef = useRef();
@@ -76,7 +76,10 @@ function SignUpPage({ show, open, close, switchToSignIn }) {
           </Button>
         </Form>
         <div className="signPageText">
-          Already have an account? <Link onClick={switchToSignIn}>Sign In</Link>
+          Already have an account?{" "}
+          <p className="linkText" onClick={switchToSignIn}>
+            Sign In
+          </p>
         </div>
       </Modal.Body>
     </Modal>
