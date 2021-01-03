@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import PracticeCard from "./PracticeCard";
 
-
-
 class Practice extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pieces: []
+      pieces: [],
     };
   }
 
@@ -18,19 +16,16 @@ class Practice extends Component {
 
   componentDidMount() {
     fetch("/test")
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         this.setState({
-          pieces: data
+          pieces: data,
         });
       });
   }
 
   render() {
-    return this.state.pieces.map((piece) => (
-      <PracticeCard piece={piece} />
-    ));
-      
+    return this.state.pieces.map((piece) => <PracticeCard piece={piece} />);
   }
 }
 

@@ -4,6 +4,7 @@ import { Alert, Navbar, Nav } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import SignIn from "../auth/SignInPage";
 import SignUp from "../auth/SignUpPage";
+import UpdateProfile from "../auth/UpdateProfile";
 import ForgotPassword from "../auth/ForgotPassword";
 import { useAuth } from "../components/AuthContext";
 
@@ -12,6 +13,7 @@ function Header() {
   const [showSignIn, setSignIn] = useState(false);
   const [showSignUp, setSignUp] = useState(false);
   const [showForgotPassword, setForgotPassword] = useState(false);
+  const [showUpdateProfile, setUpdateProfile] = useState(false);
   const [shouldSwitch, setSwitch] = useState(0);
   const [error, setError] = useState("");
   const { currUser, logOut } = useAuth();
@@ -22,6 +24,8 @@ function Header() {
   const handleSignUpShow = () => setSignUp(true);
   const handleForgotPasswordClose = () => setForgotPassword(false);
   const handleForgotPasswordShow = () => setForgotPassword(true);
+  const handleUpdateProfileClose = () => setUpdateProfile(false);
+  const handleUpdateProfileShow = () => setUpdateProfile(true);
   const handleSwitch0 = () => setSwitch(0);
   const handleSwitch1 = () => setSwitch(1);
   const handleSwitch2 = () => setSwitch(2);
@@ -41,6 +45,8 @@ function Header() {
     }
     handleSwitch0();
   }, [showSignIn, showSignUp, shouldSwitch]);
+
+  //function handle
 
   async function handleLogout() {
     setError("");

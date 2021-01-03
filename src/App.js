@@ -5,7 +5,6 @@ import Dashboard from "./dashboard/Dashboard";
 import Header from "./home/Header.js";
 import AuthProvider from "./components/AuthContext";
 import PrivateRoute from "./dashboard/components/PrivateRoute";
-import updateProfile from "./dashboard/components/UpdateProfile";
 
 function App() {
   return (
@@ -13,14 +12,9 @@ function App() {
       <AuthProvider>
         <GlobalStyle />
         <Header />
-        
         <Switch>
           <Route path="/home" component={HomePage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute
-            path="/dashboard/update-profile"
-            component={updateProfile}
-          />
         </Switch>
       </AuthProvider>
     </Router>
