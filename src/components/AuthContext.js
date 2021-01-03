@@ -1,30 +1,48 @@
-// import React, { useState, useContext, useEffect } from "react";
-// import { auth } from "../firebase";
+import React, { useContext, useEffect, useState } from "react";
+import { auth } from "../firebase";
 
-// const context = React.createContext();
+const AuthContext = React.createContext();
 
-// export function useAuth() {
-//   return useContext(context);
-// }
+export function useAuth() {
+  return useContext(AuthContext);
+}
 
-// export function AuthContext({ children }) {
-//   const [currUser, setCurrUser] = useState();
+function AuthProvider({ children }) {
+  const [currUser, setCurrUser] = useState();
+  const [loading, setLoading] = useState(true);
 
-//   function signUp(email, password) {
-//     auth.createUserWithEmailAndPassword(email, password);
-//   }
+  function signUp(email, password) {
+    auth.createUserWithEmailAndPassword(email, password);
+  }
 
-//   useEffect(() => {
-//     const unsubscribe = auth.onAuthStateChanged((user) => {
-//       setCurrUser(user);
-//     });
-//     return unsubscribe;
-//   }, []);
+  function signIn(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+  }
 
-//   const value = {
-//     currUser,
-//     signUp,
-//   };
+  function logOut() {
+    return auth.signOut();
+  }
 
-//   return <context.Provider value={value}>{children}</context.Provider>;
-// }
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
+
+  const value = {
+    currUser,
+    signIn,
+    signUp,
+    logOut,
+  };
+
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
+}
+
+export default AuthProvider;

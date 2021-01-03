@@ -14,13 +14,13 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 0.5rem;
   }
 
-  .signBox input {
-    display: block;
-    margin: 1rem auto;
-    padding: 10px;
-    width: 80%;
-    border-radius:5px;
-    border: 1px solid;
+  p {
+    text-align: center;
+    margin-top: 10px;
+    :hover {
+      text-decoration: underline;
+      text-decoration-color: blue;
+    }
   }
 
 `;
