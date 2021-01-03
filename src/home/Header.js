@@ -50,7 +50,7 @@ function Header() {
     setError("");
     try {
       await logOut();
-      history.push("/home");
+      history.push("/");
     } catch {
       setError("Failed to log out");
     }

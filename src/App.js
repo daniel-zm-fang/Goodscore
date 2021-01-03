@@ -13,7 +13,7 @@ function App() {
         <GlobalStyle />
         <Header />
         <Switch>
-          <Route path="/home" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
       </AuthProvider>

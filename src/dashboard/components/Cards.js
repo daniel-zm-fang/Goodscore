@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PracticeCard from "./Card";
 import { Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 class Practice extends Component {
   constructor(props) {
@@ -27,13 +28,14 @@ class Practice extends Component {
 
   render() {
     let emptyMsg;
-    if (this.state.pieces.length == 0) {
-      emptyMsg = <h3></h3>
+    if (this.state.pieces.length === 0) {
+      emptyMsg = <h3>Add a piece to get started</h3>
     }
     return (
       <>
+        {emptyMsg}
         {this.state.pieces.map((piece) => <PracticeCard piece={piece} />)}
-        <Button variant="outline-dark"><b>+</b></Button>
+        <Button as={Link} to="/explore" variant="outline-dark"><b>+</b></Button>
       </>
       
     )
