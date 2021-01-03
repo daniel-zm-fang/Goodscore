@@ -24,7 +24,9 @@ function SignUpPage({ show, open, close, shouldSwitch }) {
       setLoading(true);
       await signUp(emailRef.current.value, passwordRef.current.value);
       close();
-      history.push("/dashboard");
+      setTimeout(() => {
+        history.push("/dashboard");
+      }, 500);
     } catch {
       setError("Failed to create an account");
     }
