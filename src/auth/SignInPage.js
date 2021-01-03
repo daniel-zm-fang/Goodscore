@@ -1,9 +1,15 @@
 import React, { useRef, useState } from "react";
 import { Alert, Form, Button, Modal } from "react-bootstrap";
 import { useAuth } from "../components/AuthContext";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-function SignInPage({ show, open, close, shouldSwitch }) {
+function SignInPage({
+  show,
+  open,
+  close,
+  switchToSignUp,
+  switchToForgotPassword,
+}) {
   const emailRef = useRef();
   const passwordRef = useRef();
   const { signIn } = useAuth();
@@ -60,7 +66,12 @@ function SignInPage({ show, open, close, shouldSwitch }) {
             Sign In
           </Button>
         </Form>
-        <p onClick={shouldSwitch}>Need an account? Sign Up</p>
+        <div className="signPageText">
+          <Link onClick={switchToForgotPassword}>Forgot Password?</Link>
+          <p>
+            Need an account? <Link onClick={switchToSignUp}>Sign Up</Link>
+          </p>
+        </div>
       </Modal.Body>
     </Modal>
   );

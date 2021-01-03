@@ -4,13 +4,15 @@ import { Alert, Navbar, Nav } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import SignIn from "../auth/SignInPage";
 import SignUp from "../auth/SignUpPage";
+import ForgotPassword from "../auth/ForgotPassword";
 import { useAuth } from "../components/AuthContext";
 
 function Header() {
   let content;
   const [showSignIn, setSignIn] = useState(false);
   const [showSignUp, setSignUp] = useState(false);
-  const [shouldSwitch, setSwitch] = useState(false);
+  const [showForgotPassword, setForgotPassword] = useState(false);
+  const [shouldSwitch, setSwitch] = useState(0);
   const [error, setError] = useState("");
   const { currUser, logOut } = useAuth();
   const history = useHistory();
@@ -18,11 +20,14 @@ function Header() {
   const handleSignInShow = () => setSignIn(true);
   const handleSignUpClose = () => setSignUp(false);
   const handleSignUpShow = () => setSignUp(true);
-  const handleSwitchTrue = () => setSwitch(true);
-  const handleSwitchFalse = () => setSwitch(false);
+  const handleForgotPasswordClose = () => setForgotPassword(false);
+  const handleForgotPasswordShow = () => setForgotPassword(true);
+  const handleSwitch0 = () => setSwitch(0);
+  const handleSwitch1 = () => setSwitch(1);
+  const handleSwitch2 = () => setSwitch(2);
 
   useEffect(() => {
-    if (shouldSwitch) {
+    if (shouldSwitch === 1) {
       if (showSignIn) {
         handleSignInClose();
         handleSignUpShow();
@@ -30,8 +35,11 @@ function Header() {
         handleSignInShow();
         handleSignUpClose();
       }
-      handleSwitchFalse();
+    } else if (shouldSwitch === 2) {
+      handleSignInClose();
+      handleForgotPasswordShow();
     }
+    handleSwitch0();
   }, [showSignIn, showSignUp, shouldSwitch]);
 
   async function handleLogout() {
@@ -68,13 +76,19 @@ function Header() {
           show={showSignIn}
           open={handleSignInShow}
           close={handleSignInClose}
-          shouldSwitch={handleSwitchTrue}
+          switchToSignUp={handleSwitch1}
+          switchToForgotPassword={handleSwitch2}
         />
         <SignUp
           show={showSignUp}
           open={handleSignUpShow}
           close={handleSignUpClose}
-          shouldSwitch={handleSwitchTrue}
+          switchToSignIn={handleSwitch1}
+        />
+        <ForgotPassword
+          show={showForgotPassword}
+          open={handleForgotPasswordShow}
+          close={handleForgotPasswordClose}
         />
       </>
     );

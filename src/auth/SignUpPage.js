@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Alert, Form, Button, Modal } from "react-bootstrap";
 import { useAuth } from "../components/AuthContext";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-function SignUpPage({ show, open, close, shouldSwitch }) {
+function SignUpPage({ show, open, close, switchToSignIn }) {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -26,7 +26,7 @@ function SignUpPage({ show, open, close, shouldSwitch }) {
       close();
       setTimeout(() => {
         history.push("/dashboard");
-      }, 500);
+      }, 1500);
     } catch {
       setError("Failed to create an account");
     }
@@ -75,7 +75,9 @@ function SignUpPage({ show, open, close, shouldSwitch }) {
             Sign Up
           </Button>
         </Form>
-        <p onClick={shouldSwitch}>Already have an account? Sign In</p>
+        <div className="signPageText">
+          Already have an account? <Link onClick={switchToSignIn}>Sign In</Link>
+        </div>
       </Modal.Body>
     </Modal>
   );

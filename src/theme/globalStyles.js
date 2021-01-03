@@ -14,15 +14,10 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 0.5rem;
   }
 
-  p {
+  .signPageText {
     text-align: center;
     margin-top: 10px;
-    :hover {
-      text-decoration: underline;
-      text-decoration-color: blue;
-    }
   }
-
 `;
 
 export default GlobalStyle;
