@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import PracticeCard from "./PracticeCard";
+import PracticeCard from "./Card";
+import { Button } from "react-bootstrap"
 
 class Practice extends Component {
   constructor(props) {
@@ -25,7 +26,17 @@ class Practice extends Component {
   }
 
   render() {
-    return this.state.pieces.map((piece) => <PracticeCard piece={piece} />);
+    let emptyMsg;
+    if (this.state.pieces.length == 0) {
+      emptyMsg = <h3></h3>
+    }
+    return (
+      <>
+        {this.state.pieces.map((piece) => <PracticeCard piece={piece} />)}
+        <Button variant="outline-dark"><b>+</b></Button>
+      </>
+      
+    )
   }
 }
 

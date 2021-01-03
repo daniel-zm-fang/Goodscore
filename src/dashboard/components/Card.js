@@ -9,11 +9,12 @@ export default function PracticeCard({ piece }) {
         <Card.Title>{piece.name}</Card.Title>
         <Card.Text>Composed by: {piece.composer}</Card.Text>
         <ProgressBar
+          variant="dark"
           className="mb-3"
           now={piece.progress}
           label={`${piece.progress}%`}
         />
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="dark">Go somewhere</Button>
       </Card.Body>
     </Card>
   );

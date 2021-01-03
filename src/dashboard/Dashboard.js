@@ -1,6 +1,6 @@
 import React from "react";
 import PrivateRoute from "./components/PrivateRoute";
-import Practice from "./components/Practice";
+import Cards from "./components/Cards";
 import Explore from "./components/Explore";
 import Community from "./components/Community";
 import Feedback from "./components/Feedback";
@@ -11,8 +11,8 @@ export default function Dashboard() {
   return (
     <>
       <Bookmarks />
+      <Cards />
       <Switch>
-        <PrivateRoute path="/dashboard/practice" component={Practice} />
         <PrivateRoute path="/dashboard/explore" component={Explore} />
         <PrivateRoute path="/dashboard/community" component={Community} />
         <PrivateRoute path="/dashboard/feedback" component={Feedback} />
