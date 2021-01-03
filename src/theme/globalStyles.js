@@ -18,6 +18,16 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
     margin-top: 10px;
   }
+
+  .linkText {
+    display: inline;
+    margin-top: 0px;
+    :hover {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 `;
 
 export default GlobalStyle;

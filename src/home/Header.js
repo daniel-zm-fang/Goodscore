@@ -46,8 +46,6 @@ function Header() {
     handleSwitch0();
   }, [showSignIn, showSignUp, shouldSwitch]);
 
-  //function handle
-
   async function handleLogout() {
     setError("");
     try {
@@ -63,10 +61,13 @@ function Header() {
       <>
         <h1>{currUser.email}</h1>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Button className="mx-2" as={Link} to="/updateProfile">
-          Update Profile
-        </Button>
+        <Button onClick={handleUpdateProfileShow}>Update Profile</Button>
         <Button onClick={handleLogout}>Sign Out</Button>
+        <UpdateProfile
+          show={showUpdateProfile}
+          open={handleUpdateProfileShow}
+          close={handleUpdateProfileClose}
+        />
       </>
     );
   } else {
