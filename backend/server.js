@@ -2,6 +2,14 @@ const express = require("express");
 const app = express();
 const port = 8080;
 
+var bodyParser = require("body-parser");
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(express.urlencoded());
+
 // test data for now, use MongoDB later
 var testData = [
   {
@@ -23,6 +31,16 @@ var testData = [
 
 app.get("/test", (req, res) => {
   res.send(testData);
+});
+
+app.post("/add", (req, res) => {
+  var data = {
+    name: req.body.name,
+    composer: req.body.composer,
+    progress: 0,
+  }
+  testData.push(data);
+  console.log(testData);
 });
 
 app.listen(port, () => {
