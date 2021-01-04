@@ -1,4 +1,7 @@
 import { createGlobalStyle } from "styled-components";
+import Morning from "./morning.png";
+import Afternoon from "./afternoon.png";
+import Evening from "./evening.png";
 
 const GlobalStyle = createGlobalStyle`
   .notHome {
@@ -28,6 +31,24 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
   }
+  
+  .morning {
+    background: url(${Morning}),
+    linear-gradient(to bottom left, #5ecdfb, #68d2fc, #73d8fd, #7dddfe, #87e2ff);
+  }
+
+  .afternoon {
+    background: url(${Afternoon}),
+    linear-gradient(to bottom left, #f69718, #ee8827, #e47a31, #d86e38, #ca623d);
+  }
+
+
+  .evening {
+    background: url(${Evening}),
+    linear-gradient(to top right, #2e324f, #333757, #383c60, #3d4168, #434671);
+  }
+
+  
 `;
 
 export default GlobalStyle;
