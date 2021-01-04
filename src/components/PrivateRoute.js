@@ -9,7 +9,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={(props) => {
-        return currUser ? <Component {...props} /> : <Redirect to="/home" />;
+        return currUser ? <Component {...props} /> : <Redirect to="/" />;
       }}
     ></Route>
   );

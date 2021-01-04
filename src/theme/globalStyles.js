@@ -31,6 +31,12 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
   }
+
+  .signOut {
+    :hover {
+      background-color: rgb(235,71,71)
+    }
+  }
   
   .morning {
     background: url(${Morning}),
@@ -42,13 +48,17 @@ const GlobalStyle = createGlobalStyle`
     linear-gradient(to bottom left, #f69718, #ee8827, #e47a31, #d86e38, #ca623d);
   }
 
-
   .evening {
     background: url(${Evening}),
     linear-gradient(to top right, #2e324f, #333757, #383c60, #3d4168, #434671);
   }
 
-  
+  .morning, .afternoon, .evening {
+    color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
 `;
 
 export default GlobalStyle;

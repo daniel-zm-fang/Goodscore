@@ -59,8 +59,11 @@ function Header() {
   if (currUser) {
     content = (
       <>
+        {error && <Alert variant="danger">{error}</Alert>}
         <Button onClick={handleUpdateProfileShow}>Update Profile</Button>
-        <Button className="mx-2" onClick={handleLogout}>Sign Out</Button>
+        <Button className="mx-2 signOut" onClick={handleLogout}>
+          Sign Out
+        </Button>
         <UpdateProfile
           show={showUpdateProfile}
           open={handleUpdateProfileShow}
@@ -105,7 +108,7 @@ function Header() {
         className="mx-3"
         as={Link}
         to={() => {
-          return currUser ? "/dashboard" : "/home";
+          return currUser ? "/dashboard" : "/";
         }}
       >
         Goodscore

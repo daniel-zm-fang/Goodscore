@@ -8,13 +8,6 @@ const fadein = keyframes`
     100% {  opacity: 1; } 
 `;
 
-const StyledJumbotron = styled(Jumbotron)`
-  color: white;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right;
-`;
-
 const StyledWelcomeMessage = styled.h2`
   animation: ${fadein} 1.5s;
   margin: 0 0 0 5rem;
@@ -39,13 +32,13 @@ function WelcomeMessage() {
   });
 
   return (
-    <StyledJumbotron fluid className={background}>
+    <Jumbotron fluid className={background}>
       <StyledWelcomeMessage>
         {message}
         <br />
         {currUser.email}
       </StyledWelcomeMessage>
-    </StyledJumbotron>
+    </Jumbotron>
   );
 }
 
