@@ -35,8 +35,8 @@ class Practice extends Component {
       <Container>
         {emptyMsg}
         <CardDeck className="mb-4">
-          {this.state.pieces.map((piece) => (
-            <PracticeCard piece={piece} />
+          {this.state.pieces.map((piece, index) => (
+            <PracticeCard piece={piece} key={index}/> 
           ))}
         </CardDeck>
         <Button as={Link} to="/explore" variant="outline-dark">

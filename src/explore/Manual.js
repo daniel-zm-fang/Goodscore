@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Link } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 
 export default function Manual() {
@@ -11,9 +11,13 @@ export default function Manual() {
         </Form.Group>
         <Form.Group controlId="composerName">
           <Form.Label>Composer</Form.Label>
-          <Form.Control name="composer" type="text" placeholder="Enter composer" />
+          <Form.Control
+            name="composer"
+            type="text"
+            placeholder="Enter composer"
+          />
         </Form.Group>
-        <Button variant="dark" type="submit">
+        <Button as={Link} to="/dashboard" variant="dark" type="submit">
           Submit
         </Button>
       </Form>
