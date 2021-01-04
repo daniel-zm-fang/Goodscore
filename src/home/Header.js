@@ -59,7 +59,6 @@ function Header() {
   if (currUser) {
     content = (
       <>
-        <h1>{currUser.email}</h1>
         {error && <Alert variant="danger">{error}</Alert>}
         <Button onClick={handleUpdateProfileShow}>Update Profile</Button>
         <Button onClick={handleLogout}>Sign Out</Button>

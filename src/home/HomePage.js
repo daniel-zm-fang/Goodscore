@@ -1,12 +1,11 @@
 import React from "react";
 import { Fade, Jumbotron, Image, Container, Row, Col } from "react-bootstrap";
-import Background from "./images/home_bg.jpg";
+import Background from "../theme/home_bg.jpg";
 
 const jumboStyle = {
   minHeight: "500px",
   backgroundImage: `url(${Background})`,
   backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
 };
 
