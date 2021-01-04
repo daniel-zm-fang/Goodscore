@@ -20,18 +20,18 @@ class Bookmarks extends Component {
       info: [
         [
           "Practice",
-          "/dashboard/practice",
+          "/practice",
           "linear-gradient(to right, #fe8c00, #f83600)",
         ],
-        ["Explore", "/dashboard/explore", "linear-gradient(to right, #485563, #29323c)"],
+        ["Explore", "/explore", "linear-gradient(to right, #485563, #29323c)"],
         [
           "Community",
-          "/dashboard/community",
+          "/community",
           "linear-gradient(to bottom right, #EA898A, #7E1477)",
         ],
         [
           "Feedback",
-          "/dashboard/feedback",
+          "/feedback",
           "linear-gradient(to right, #9d50bb, #6e48aa)",
         ],
       ],
