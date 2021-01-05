@@ -8,9 +8,15 @@ import Feedback from "./dashboard/components/Feedback";
 import Header from "./home/Header.js";
 import AuthProvider from "./components/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
+import {useEffect} from "react";
 
 
 function App() {
+
+  useEffect(() => {
+    document.title = "Goodscore";
+  }, []);
+
   return (
     <Router>
       <AuthProvider>

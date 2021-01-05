@@ -1,3 +1,4 @@
+//express init
 const express = require("express");
 const app = express();
 const port = 8080;
@@ -9,6 +10,17 @@ app.use(
   })
 );
 app.use(express.urlencoded());
+
+//firebase init
+var admin = require("firebase-admin");
+
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore();
 
 // test data for now, use MongoDB later
 var testData = [
@@ -42,6 +54,10 @@ app.post("/add", (req, res) => {
   testData.push(data);
   console.log(testData);
 });
+
+// app.post("/del", (req, res) => {
+  
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

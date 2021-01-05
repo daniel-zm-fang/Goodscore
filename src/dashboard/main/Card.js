@@ -3,7 +3,7 @@ import { Card, Button, ProgressBar } from "react-bootstrap";
 
 export default function PracticeCard({ piece }) {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="m-2 col-sm-1" style={{ minWidth: "25%"}}>
       <Card.Body>
         <Card.Title>{piece.name}</Card.Title>
         <Card.Text>Composed by: {piece.composer}</Card.Text>
