@@ -1,16 +1,40 @@
-import React, { useState, Link } from "react";
+import React from "react";
+import { useHistory, Link } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
+import { addSong } from "../firebase";
 
 function Manual() {
+  const history = useHistory();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addSong(
+      "rootM2R69HAi6ztTon1o",
+      event.target.name.value,
+      event.target.composer.value,
+      event.target.progress.value
+    );
+    history.push("/dashboard");
+  };
+
+  const displayProgress = (event) => {
+    document.getElementById("progressDisplay").value = event.target.value;
+  };
+
   return (
-    <Container className="mt-5">
-      <h3>Add a new piece</h3>
-      <Form className="mt-4" action="/add" method="POST">
-        <Form.Group controlId="pieceName">
+    <Container className="mx-5">
+      <h3 className="my-5">Add a new sheet music</h3>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
           <Form.Label>Piece Name</Form.Label>
-          <Form.Control name="name" type="text" placeholder="Enter the piece name" required />
+          <Form.Control
+            name="name"
+            type="text"
+            placeholder="Enter the piece name"
+            required
+          />
         </Form.Group>
-        <Form.Group controlId="composerName">
+        <Form.Group>
           <Form.Label>Composer</Form.Label>
           <Form.Control
             name="composer"
@@ -19,12 +43,34 @@ function Manual() {
             required
           />
         </Form.Group>
-        <Button as={Link} to="/dashboard" variant="dark" type="submit">
-          Add
-        </Button>
-        <Button className="justify-content-end" as={Link} to="/dashboard" variant="dark">
+        <Form.Group>
+          <Form.Label>Progress</Form.Label>
+          <Form.Control
+            id="progress"
+            name="progress"
+            type="range"
+            min="0"
+            max="100"
+            defaultValue="0"
+            onInput={displayProgress}
+            required
+          />
+          <output id="progressDisplay">0</output>
+        </Form.Group>
+        <input
+          className="btn btn-outline-dark"
+          variant="dark"
+          type="submit"
+          value="Add"
+        />
+        <Button
+          style={{ float: "right" }}
+          as={Link}
+          to="/dashboard"
+          variant="outline-dark"
+        >
           Cancel
-      </Button>
+        </Button>
       </Form>
     </Container>
   );

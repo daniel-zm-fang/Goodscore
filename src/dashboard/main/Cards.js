@@ -1,39 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PracticeCard from "./Card";
 import { Container, Button, CardDeck } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { getSongsFromUser } from "../../firebase";
 
 function Cards() {
-  const [pieces, setPieces] = useState([]);
-  let message = "Songs";
-  if (pieces.length === 0) {
-    message = "Add a piece to get started";
-  }
+  const [songs, setSongs] = useState([]);
+  const message = useRef("Personal Library");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/test")
-      .then((res) => res.json())
-      .then(data => {
-        setPieces(() => data)
-      })
-      .catch(err => {
-        alert(err);
-      })
-  }, []);
+    getSongsFromUser("rootM2R69HAi6ztTon1o").then((data) => {
+      setSongs(data);
+      setLoading(false);
+      if (songs.length === 0) {
+        message.current = "Add a sheet music to get started";
+      } else {
+        message.current = "Personal Library";
+      }
+    });
+  }, [songs.length]);
 
-  return (
-    <Container fluid >
-      <h3 className="mx-4">{message}</h3>
+  const temp = (
+    <>
+      <h3 className="m-4">{message.current}</h3>
       <CardDeck className="m-2 justify-content-center">
-        {pieces.map((piece, index) => (
-          <PracticeCard piece={piece} key={index}/> 
+        {songs.map((song, index) => (
+          <PracticeCard song={song} key={index} />
         ))}
       </CardDeck>
-      <Button className="m-4" as={Link} to="/explore" variant="outline-dark" size="lg">
-        <b>+</b>
+      <Button
+        className="m-4 px-4 py-1"
+        as={Link}
+        to="/explore"
+        variant="outline-dark"
+        size="lg"
+      >
+        <b style={{ fontSize: "50px" }}>+</b>
       </Button>
-    </Container>
-    );
+    </>
+  );
+
+  return <Container fluid>{!loading && temp}</Container>;
 }
 
 export default Cards;
