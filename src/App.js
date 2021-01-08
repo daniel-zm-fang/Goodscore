@@ -16,6 +16,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useEffect } from "react";
 
 function App() {
+
   useEffect(() => {
     document.title = "Goodscore";
   }, []);
@@ -26,10 +27,7 @@ function App() {
         <GlobalStyle />
         <Header />
         <Switch>
-          {/* <Route exact path="/">
-            {false ? <Redirect to="/dashboard" /> : <HomePage />}
-          </Route> */}
-          <Route exact path="/" component={HomePage} />
+          <PrivateRoute exact path="/" component={HomePage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/explore" component={Explore} />
           <PrivateRoute path="/community" component={Community} />
