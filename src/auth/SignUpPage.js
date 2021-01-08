@@ -22,11 +22,10 @@ function SignUpPage({ show, open, close, switchToSignIn }) {
     try {
       setError("");
       setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value);
-      close();
-      setTimeout(() => {
+      signUp(emailRef.current.value, passwordRef.current.value).then(() => {
+        close();
         history.push("/dashboard");
-      }, 1500);
+      });
     } catch {
       setError("Failed to create an account");
     }

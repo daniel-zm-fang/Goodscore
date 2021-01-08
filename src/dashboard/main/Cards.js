@@ -2,32 +2,47 @@ import React, { useState, useRef, useEffect } from "react";
 import PracticeCard from "./Card";
 import { Container, Button, CardDeck } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { users } from "../../firebase";
+import { users, checkUserExist, addUser } from "../../firebase";
+import { useAuth } from "../../components/AuthContext";
 
 function Cards() {
   const [songs, setSongs] = useState([]);
   const message = useRef("Personal Library");
   const [loading, setLoading] = useState(true);
   const [deleted, setDeleted] = useState(false);
+  const { currUser } = useAuth();
   const handleDeletedTrue = () => {
     setDeleted(true);
   };
 
-  useEffect(() => {
-    const unsub = users.doc("rootM2R69HAi6ztTon1o").onSnapshot((snapshot) => {
+  async function addUserHelper() {
+    const exist = await checkUserExist(currUser.uid);
+    if (!exist) {
+      addUser(currUser.uid);
+    }
+  }
+
+  function update() {
+    users.doc(currUser.uid).onSnapshot((snapshot) => {
       setSongs(snapshot.data().songs);
       setLoading(false);
       if (deleted) {
         setDeleted(false);
       }
     });
-    if (songs.length === 0) {
-      message.current = "Add a sheet music to get started";
-    } else {
-      message.current = "Personal Library";
-    }
-    return unsub;
-  }, [songs.length, deleted]);
+  }
+
+  useEffect(() => {
+    addUserHelper().then(() => {
+      update();
+      if (songs.length === 0) {
+        message.current = "Add a sheet music to get started";
+      } else {
+        message.current = "Personal Library";
+      }
+    });
+    return update;
+  }, [songs.length, deleted, currUser]);
 
   const temp = (
     <>

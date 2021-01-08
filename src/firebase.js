@@ -31,6 +31,13 @@ async function checkUserExist(userID) {
   return false;
 }
 
+async function addUser(userID) {
+  users.doc(userID).set({
+    friends: [],
+    songs: [],
+  });
+}
+
 async function getSongData(songName) {
   const doc = await songs.doc(songName).get();
   return doc.data();
@@ -74,6 +81,7 @@ export {
   songs,
   checkSongExist,
   checkUserExist,
+  addUser,
   getSongData,
   getSongsFromUser,
   addSong,

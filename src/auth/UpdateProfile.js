@@ -23,11 +23,11 @@ export default function UpdateProfile({ show, open, close }) {
     setError("");
 
     if (emailRef.current.value !== currUser.email) {
-      alert("diff email");
+      alert("different email");
       promises.push(updateEmail(emailRef.current.value));
     }
     if (passwordRef.current.value) {
-      alert("diff password");
+      alert("different password");
       promises.push(updatePassword(passwordRef.current.value));
     }
 
@@ -60,7 +60,7 @@ export default function UpdateProfile({ show, open, close }) {
           <Form.Group id="email">
             <Form.Control
               type="email"
-              placeholder="Email"
+              placeholder="New email, enter current email to keep the same email"
               ref={emailRef}
               required
               defaultValue={currUser.email}
@@ -69,7 +69,7 @@ export default function UpdateProfile({ show, open, close }) {
           <Form.Group id="password">
             <Form.Control
               type="password"
-              placeholder="Password, leave blank to keep the same"
+              placeholder="New password, leave blank to keep the old password"
               ref={passwordRef}
             />
           </Form.Group>
@@ -77,7 +77,7 @@ export default function UpdateProfile({ show, open, close }) {
             <Form.Control
               type="password"
               ref={passwordConfirmRef}
-              placeholder="Confirm password, leave blank to keep the same"
+              placeholder="Confirm password, leave blank to keep the old password"
             />
           </Form.Group>
           <Button disabled={loading} className="w-100" type="submit">

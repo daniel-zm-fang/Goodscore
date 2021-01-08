@@ -59,6 +59,34 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-position: right;
   }
+
+.closeButton {
+  position: absolute;
+  right: 16px;
+  height: 20px;
+  opacity: 0.5;
+  border: none;
+
+  :hover {
+    opacity: 1;
+  }
+
+  :before,
+  :after {
+    position: absolute;
+    content: " ";
+    height: 1rem;
+    width: 2px;
+    background-color: #333;
+  }
+
+  :before {
+    transform: rotate(45deg);
+  }
+  :after {
+    transform: rotate(-45deg);
+  }
+}
 `;
 
 export default GlobalStyle;
