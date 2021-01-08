@@ -60,6 +60,13 @@ async function addSong(userID, songName, composerName, progress = 0) {
   });
 }
 
+async function deleteSong(userID, songName) {
+  const temp = await users.doc(userID).get();
+  users.doc(userID).update({
+    songs: temp.data().songs.filter((song) => song.name !== songName),
+  });
+}
+
 export const auth = app.auth();
 export default app;
 export {
@@ -70,4 +77,5 @@ export {
   getSongData,
   getSongsFromUser,
   addSong,
+  deleteSong,
 };

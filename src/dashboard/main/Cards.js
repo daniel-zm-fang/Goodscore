@@ -2,31 +2,39 @@ import React, { useState, useRef, useEffect } from "react";
 import PracticeCard from "./Card";
 import { Container, Button, CardDeck } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { getSongsFromUser } from "../../firebase";
+import { users } from "../../firebase";
 
 function Cards() {
   const [songs, setSongs] = useState([]);
   const message = useRef("Personal Library");
   const [loading, setLoading] = useState(true);
+  const [deleted, setDeleted] = useState(false);
+  const handleDeletedTrue = () => {
+    setDeleted(true);
+  };
 
   useEffect(() => {
-    getSongsFromUser("rootM2R69HAi6ztTon1o").then((data) => {
-      setSongs(data);
+    const unsub = users.doc("rootM2R69HAi6ztTon1o").onSnapshot((snapshot) => {
+      setSongs(snapshot.data().songs);
       setLoading(false);
-      if (songs.length === 0) {
-        message.current = "Add a sheet music to get started";
-      } else {
-        message.current = "Personal Library";
+      if (deleted) {
+        setDeleted(false);
       }
     });
-  }, [songs.length]);
+    if (songs.length === 0) {
+      message.current = "Add a sheet music to get started";
+    } else {
+      message.current = "Personal Library";
+    }
+    return unsub;
+  }, [songs.length, deleted]);
 
   const temp = (
     <>
       <h3 className="m-4">{message.current}</h3>
       <CardDeck className="m-2 justify-content-center">
         {songs.map((song, index) => (
-          <PracticeCard song={song} key={index} />
+          <PracticeCard song={song} key={index} deleted={handleDeletedTrue} />
         ))}
       </CardDeck>
       <Button

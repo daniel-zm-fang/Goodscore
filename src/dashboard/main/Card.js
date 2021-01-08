@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Button, ProgressBar } from "react-bootstrap";
-import { getSongData } from "../../firebase";
+import { getSongData, deleteSong } from "../../firebase";
 
-function SheetMusicCard({ song }) {
-  const songData = useRef();
+function SheetMusicCard({ song, deleted }) {
+  const [songData, setSongData] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getSongData(song.name).then((data) => {
-      songData.current = data;
+      setSongData(data);
       setLoading(false);
     });
   }, [song.name]);
@@ -18,9 +18,7 @@ function SheetMusicCard({ song }) {
       <Card.Body>
         <Card.Title>{song.name}</Card.Title>
         <Card.Img variant="top" src="../../theme/evening.png" />
-        <Card.Text>
-          Composed by: {!loading && songData.current.composer}
-        </Card.Text>
+        <Card.Text>Composed by: {!loading && songData.composer}</Card.Text>
         <ProgressBar
           variant="dark"
           className="mb-3"
@@ -28,6 +26,15 @@ function SheetMusicCard({ song }) {
           label={`${song.progress}%`}
         />
         <Button variant="dark">Go somewhere</Button>
+        <Button
+          variant="danger"
+          onClick={() => {
+            deleteSong("rootM2R69HAi6ztTon1o", song.name);
+            deleted();
+          }}
+        >
+          Delete
+        </Button>
       </Card.Body>
     </Card>
   );
