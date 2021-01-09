@@ -82,13 +82,23 @@ const GlobalStyle = createGlobalStyle`
   }
 }
 
+.expandButton {
+  position: absolute;
+  right: 38px;
+  top: 9.5px;
+  opacity: 0.5;
+
+  :hover {
+    opacity: 1;
+  }
+}
+
 .sheetMusicCard {
   min-width: 25%;
   :hover {
     box-shadow: 8px 8px 8px gray;
     cursor: pointer;
   }
-  
 }
 `;
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, ProgressBar } from "react-bootstrap";
-import { getSongData } from "../../firebase";
+import { Card, ProgressBar, Form } from "react-bootstrap";
+import { getSongData, updateSong } from "../../firebase";
 import { useAuth } from "../../components/AuthContext";
 
 function SheetMusicCard({ song, showModal }) {
   const [songData, setSongData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState("expand");
   const { currUser } = useAuth();
 
   useEffect(() => {
@@ -16,22 +16,58 @@ function SheetMusicCard({ song, showModal }) {
     });
   }, [song.name]);
 
-  const details = <>Hello</>;
+  const displayProgress = (event) => {
+    document.getElementById("updateProgressDisplay").value = event.target.value;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    updateSong(currUser.uid, song.name, event.target.newProgress.value);
+  };
+
+  const details = (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>Update Progress</Form.Label>
+        <Form.Control
+          id="newProgress"
+          name="newProgress"
+          type="range"
+          min="0"
+          max="100"
+          defaultValue="0"
+          onInput={displayProgress}
+          required
+        />
+        <output id="updateProgressDisplay">0</output>
+      </Form.Group>
+      <input
+        className="btn btn-outline-dark"
+        variant="dark"
+        type="submit"
+        value="Update"
+      />
+    </Form>
+  );
 
   return (
-    <Card
-      className={`m-2 col-sm-1 sheetMusicCard`}
-      onClick={() => {
-        setClick(!click);
-      }}
-    >
+    <Card className={`m-2 col-sm-1 sheetMusicCard`}>
       <button
         className="closeButton"
         onClick={() => {
-          //deleteSong(currUser.uid, song.name);
           showModal(song.name);
         }}
       ></button>
+      <i
+        className={`fas fa-${click} expandButton`}
+        onClick={() => {
+          if (click === "compress") {
+            setClick("expand");
+          } else {
+            setClick("compress");
+          }
+        }}
+      ></i>
       <Card.Body>
         <Card.Title>{song.name}</Card.Title>
         <Card.Img variant="top" src="../../theme/evening.png" />
@@ -44,7 +80,7 @@ function SheetMusicCard({ song, showModal }) {
           now={song.progress}
           label={`${song.progress}%`}
         />
-        {click && details}
+        {click === "expand" && details}
       </Card.Body>
     </Card>
   );
