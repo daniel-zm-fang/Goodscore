@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { Fade, Jumbotron, Container, Row, Col } from "react-bootstrap";
 import Background from "./images/home_bg.jpg";
 import clock from "./images/clock.png";
 import search from "./images/search.png";
 import friends from "./images/friends.png";
+import SignUp from "../auth/SignUpPage"
 
 const jumboStyle = {
   minHeight: "40vw",
@@ -26,8 +27,12 @@ const imgStyle = {
 };
 
 export default function HomePage() {
+  const [showSignUp, setShowSignUp] = useState(false);
+  const handleShowSignUp = setShowSignUp(!showSignUp);
+
   return (
     <>
+    <SignUp show={showSignUp} close={handleShowSignUp} />
       <Jumbotron fluid style={jumboStyle}>
         <Fade in={true}>
           <h1

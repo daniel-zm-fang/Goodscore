@@ -4,7 +4,6 @@ import Afternoon from "./afternoon.png";
 import Evening from "./evening.png";
 
 const GlobalStyle = createGlobalStyle`
-
   .button {
     color: white;
     text-decoration: none;
@@ -99,6 +98,11 @@ const GlobalStyle = createGlobalStyle`
   :hover {
     box-shadow: 8px 8px 8px gray;
   }
+}
+
+#inline {
+  display: inline-block,
+  margin-right: 20px,
 }
 `;
 
