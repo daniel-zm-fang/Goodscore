@@ -74,6 +74,18 @@ async function deleteSong(userID, songName) {
   });
 }
 
+async function updateSong(userID, songName, newProgress) {
+  const temp = await users.doc(userID).get();
+  users.doc(userID).update({
+    songs: temp.data().songs.map((song) => {
+      if (song.name === songName) {
+        song.progress = newProgress;
+      }
+      return song;
+    }),
+  });
+}
+
 export const auth = app.auth();
 export default app;
 export {
@@ -86,4 +98,5 @@ export {
   getSongsFromUser,
   addSong,
   deleteSong,
+  updateSong,
 };
