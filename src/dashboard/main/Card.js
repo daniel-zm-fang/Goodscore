@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, ProgressBar } from "react-bootstrap";
-import { getSongData, deleteSong } from "../../firebase";
+import { Card, ProgressBar } from "react-bootstrap";
+import { getSongData } from "../../firebase";
 import { useAuth } from "../../components/AuthContext";
 
-function SheetMusicCard({ song, deleted }) {
+function SheetMusicCard({ song, showModal }) {
   const [songData, setSongData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [click, setClick] = useState(false);
   const { currUser } = useAuth();
 
   useEffect(() => {
@@ -15,26 +16,35 @@ function SheetMusicCard({ song, deleted }) {
     });
   }, [song.name]);
 
+  const details = <>Hello</>;
+
   return (
-    <Card className="m-2 col-sm-1" style={{ minWidth: "25%" }}>
+    <Card
+      className={`m-2 col-sm-1 sheetMusicCard`}
+      onClick={() => {
+        setClick(!click);
+      }}
+    >
       <button
         className="closeButton"
         onClick={() => {
-          deleteSong(currUser.uid, song.name);
-          deleted();
+          //deleteSong(currUser.uid, song.name);
+          showModal(song.name);
         }}
       ></button>
       <Card.Body>
         <Card.Title>{song.name}</Card.Title>
         <Card.Img variant="top" src="../../theme/evening.png" />
-        <Card.Text>Composed by: {!loading && songData.composer}</Card.Text>
+        <Card.Text>
+          Composed by: <b>{!loading && songData.composer}</b>
+        </Card.Text>
         <ProgressBar
           variant="dark"
           className="mb-3"
           now={song.progress}
           label={`${song.progress}%`}
         />
-        <Button variant="dark">Go somewhere</Button>
+        {click && details}
       </Card.Body>
     </Card>
   );

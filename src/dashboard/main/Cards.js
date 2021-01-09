@@ -1,19 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import PracticeCard from "./Card";
-import { Container, Button, CardDeck } from "react-bootstrap";
+import { Container, Button, CardDeck, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { users, checkUserExist, addUser } from "../../firebase";
+import { users, checkUserExist, addUser, deleteSong } from "../../firebase";
 import { useAuth } from "../../components/AuthContext";
 
 function Cards() {
   const [songs, setSongs] = useState([]);
   const message = useRef("Personal Library");
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const { currUser } = useAuth();
-  const handleDeletedTrue = () => {
-    setDeleted(true);
-  };
+  const handleshowModalTrue = (songName) => setShowModal(songName);
+  const handleshowModalFalse = () => setShowModal(false);
 
   async function addUserHelper() {
     const exist = await checkUserExist(currUser.uid);
@@ -44,12 +44,34 @@ function Cards() {
     return update;
   }, [songs.length, deleted, currUser]);
 
-  const temp = (
+  const content = (
     <>
+      <Modal show={showModal} onHide={handleshowModalFalse}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete this sheet music?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Note: this action <b>cannot </b>be undone!
+        </Modal.Body>
+        <Button
+          variant="danger"
+          onClick={() => {
+            deleteSong(currUser.uid, showModal);
+            handleshowModalFalse();
+            setDeleted(true);
+          }}
+        >
+          Delete
+        </Button>
+      </Modal>
       <h3 className="m-4">{message.current}</h3>
       <CardDeck className="m-2 justify-content-center">
         {songs.map((song, index) => (
-          <PracticeCard song={song} key={index} deleted={handleDeletedTrue} />
+          <PracticeCard
+            song={song}
+            key={index}
+            showModal={handleshowModalTrue}
+          />
         ))}
       </CardDeck>
       <Button
@@ -64,7 +86,7 @@ function Cards() {
     </>
   );
 
-  return <Container fluid>{!loading && temp}</Container>;
+  return <Container fluid>{!loading && content}</Container>;
 }
 
 export default Cards;

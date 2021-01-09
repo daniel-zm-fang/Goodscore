@@ -4,12 +4,6 @@ import Afternoon from "./afternoon.png";
 import Evening from "./evening.png";
 
 const GlobalStyle = createGlobalStyle`
-  .notHome {
-    padding: 1rem;
-    margin: 1rem;
-    background-color: green;
-
-  }
 
   .button {
     color: white;
@@ -86,6 +80,15 @@ const GlobalStyle = createGlobalStyle`
   :after {
     transform: rotate(-45deg);
   }
+}
+
+.sheetMusicCard {
+  min-width: 25%;
+  :hover {
+    box-shadow: 8px 8px 8px gray;
+    cursor: pointer;
+  }
+  
 }
 `;
 
