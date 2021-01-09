@@ -31,6 +31,13 @@ async function checkUserExist(userID) {
   return false;
 }
 
+async function addUser(userID) {
+  users.doc(userID).set({
+    friends: [],
+    songs: [],
+  });
+}
+
 async function getSongData(songName) {
   const doc = await songs.doc(songName).get();
   return doc.data();
@@ -60,6 +67,13 @@ async function addSong(userID, songName, composerName, progress = 0) {
   });
 }
 
+async function deleteSong(userID, songName) {
+  const temp = await users.doc(userID).get();
+  users.doc(userID).update({
+    songs: temp.data().songs.filter((song) => song.name !== songName),
+  });
+}
+
 export const auth = app.auth();
 export default app;
 export {
@@ -67,7 +81,9 @@ export {
   songs,
   checkSongExist,
   checkUserExist,
+  addUser,
   getSongData,
   getSongsFromUser,
   addSong,
+  deleteSong,
 };

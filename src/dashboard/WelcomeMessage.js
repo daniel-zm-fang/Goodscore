@@ -36,7 +36,7 @@ function WelcomeMessage() {
       <StyledWelcomeMessage>
         {message}
         <br />
-        {currUser.email}
+        {currUser.email.split("@")[0]}
       </StyledWelcomeMessage>
     </Jumbotron>
   );

@@ -1,10 +1,5 @@
 import GlobalStyle from "./theme/globalStyles";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import Dashboard from "./dashboard/Dashboard";
 import Explore from "./explore/Explore";
@@ -16,7 +11,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useEffect } from "react";
 
 function App() {
-
   useEffect(() => {
     document.title = "Goodscore";
   }, []);

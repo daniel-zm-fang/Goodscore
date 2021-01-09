@@ -1,15 +1,17 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
+import { useAuth } from "../components/AuthContext";
 import { addSong } from "../firebase";
 
 function Manual() {
   const history = useHistory();
+  const { currUser } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addSong(
-      "rootM2R69HAi6ztTon1o",
+      currUser.uid,
       event.target.name.value,
       event.target.composer.value,
       event.target.progress.value
