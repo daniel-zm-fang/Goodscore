@@ -1,9 +1,10 @@
 import React from "react";
-import { Fade, Jumbotron, Image, Container, Row, Col } from "react-bootstrap";
-import Background from "../theme/home_bg.jpg";
+import { Fade, Jumbotron, Container, Row, Col } from "react-bootstrap";
+import Background from "./images/home_bg.jpg";
+import clock from "./images/clock.jpg"
 
 const jumboStyle = {
-  minHeight: "500px",
+  minHeight: "40vw",
   backgroundImage: `url(${Background})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
@@ -19,7 +20,7 @@ export default function HomePage() {
     <>
       <Jumbotron fluid style={jumboStyle}>
         <Fade in={true}>
-          <h1 className="text-light text-center" style={titleFont}>
+          <h1 className="text-light text-center user-select-none" style={titleFont}>
             Progress at your Fingertips
           </h1>
         </Fade>
@@ -27,22 +28,23 @@ export default function HomePage() {
       <Container>
         <Row>
           <Col>
-            <Image
-              src="https://www.clipartmax.com/png/middle/212-2120389_hourglass-icon-sand-timer-png-icon.png"
-              height="140px"
-            />
+            <img src={clock} alt="clock"></img>
             <h2 className="text-center">Practice</h2>
-            <p className="text-center">Some Description</p>
+            <p className="text-center">
+              Log your practice and keep track of your improvement.
+            </p>
           </Col>
           <Col>
-            <Image src="src/home/images/clock.jpg" round />
             <h2 className="text-center">Explore</h2>
-            <p className="text-center">Some Description</p>
+            <p className="text-center">
+              Learn new songs that suit your skill and taste.
+            </p>
           </Col>
           <Col>
-            <Image src="src/home/images/clock.jpg" round />
             <h2 className="text-center">Community</h2>
-            <p className="text-center">Some Description</p>
+            <p className="text-center">
+              Connect with others to share your favorite tunes.
+            </p>
           </Col>
         </Row>
       </Container>
