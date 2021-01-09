@@ -90,6 +90,7 @@ const GlobalStyle = createGlobalStyle`
 
   :hover {
     opacity: 1;
+    cursor: pointer;
   }
 }
 
@@ -97,7 +98,6 @@ const GlobalStyle = createGlobalStyle`
   min-width: 25%;
   :hover {
     box-shadow: 8px 8px 8px gray;
-    cursor: pointer;
   }
 }
 `;

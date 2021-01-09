@@ -17,7 +17,8 @@ function SheetMusicCard({ song, showModal }) {
   }, [song.name]);
 
   const displayProgress = (event) => {
-    document.getElementById("updateProgressDisplay").value = event.target.value;
+    document.getElementById("updateProgressDisplay" + song.name).value =
+      event.target.value;
   };
 
   const handleSubmit = (event) => {
@@ -39,7 +40,7 @@ function SheetMusicCard({ song, showModal }) {
           onInput={displayProgress}
           required
         />
-        <output id="updateProgressDisplay">0</output>
+        <output id={"updateProgressDisplay" + song.name}>0</output>
       </Form.Group>
       <input
         className="btn btn-outline-dark"

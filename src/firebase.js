@@ -86,6 +86,11 @@ async function updateSong(userID, songName, newProgress) {
   });
 }
 
+async function getAllComposers() {
+  const temp = await songs.get();
+  return temp.docs.map((doc) => doc.data().composer);
+}
+
 export const auth = app.auth();
 export default app;
 export {
@@ -99,4 +104,5 @@ export {
   addSong,
   deleteSong,
   updateSong,
+  getAllComposers,
 };
