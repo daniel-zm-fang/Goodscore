@@ -11,16 +11,16 @@ function PrivateRoute({ path, component: Component, ...rest }) {
       {...rest}
       render={(props) => {
         if (currUser) {
-          if (path === '/') {
-            return <Redirect to="/dashboard" />
+          if (path === "/") {
+            return <Redirect to="/dashboard" />;
           } else {
-            return <Component {...props} />
+            return <Component {...props} />;
           }
         } else {
-          if (path === '/') {
-            return <HomePage />
+          if (path === "/") {
+            return <HomePage />;
           } else {
-            return <Redirect to="/" />
+            return <Redirect to="/" />;
           }
         }
       }}

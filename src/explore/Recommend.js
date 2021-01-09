@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Form } from "react-bootstrap";
 import { getAllComposers } from "../firebase";
 
 function Recommend() {
@@ -22,12 +22,12 @@ function Recommend() {
 
   return (
     <Container className="mx-5">
-      <h3 className="my-5 inline" id="inline">
-        Add similar sheet music
-      </h3>
-      <Button id="inline" onClick={refresh}>
-        Refresh
-      </Button>
+      <h3 className="my-5">Add similar sheet music</h3>
+      <Form className="search">
+        <span className="fa fa-search searchIcon" />
+        <Form.Control type="text" className="searchBox" placeholder="Search" />
+      </Form>
+      <Button onClick={refresh}>Refresh</Button>
       {console.log(composers)}
     </Container>
   );

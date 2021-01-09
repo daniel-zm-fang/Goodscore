@@ -1,17 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import Manual from "./Manual";
 import Recommend from "./Recommend";
 
-class Explore extends Component {
-  render() {
-    return (
-      <>
-        <Recommend />
-        <hr></hr>
-        <Manual />
-      </>
-    );
-  }
+function Explore() {
+  return (
+    <>
+      <Recommend />
+      <hr></hr>
+      <Manual />
+    </>
+  );
 }
 
 export default Explore;

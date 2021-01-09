@@ -53,12 +53,12 @@ function SheetMusicCard({ song, showModal }) {
 
   return (
     <Card className={`m-2 col-sm-1 sheetMusicCard`}>
-      <button
-        className="closeButton"
+      <i
+        className="far fa-trash-alt deleteButton"
         onClick={() => {
           showModal(song.name);
         }}
-      ></button>
+      ></i>
       <i
         className={`fas fa-${click} expandButton`}
         onClick={() => {

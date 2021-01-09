@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import Morning from "./morning.png";
 import Afternoon from "./afternoon.png";
 import Evening from "./evening.png";
+import PianoKeys from "../home/images/piano.jpg";
 
 const GlobalStyle = createGlobalStyle`
   .button {
@@ -46,52 +47,31 @@ const GlobalStyle = createGlobalStyle`
     linear-gradient(to top right, #2e324f, #333757, #383c60, #3d4168, #434671);
   }
 
-  .morning, .afternoon, .evening {
+  .morning, .afternoon, .evening{
     color: white;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
   }
 
-.closeButton {
-  position: absolute;
-  right: 16px;
-  height: 20px;
-  opacity: 0.5;
-  border: none;
-
-  :hover {
-    opacity: 1;
-  }
-
-  :before,
-  :after {
+  .deleteButton, .expandButton {
     position: absolute;
-    content: " ";
-    height: 1rem;
-    width: 2px;
-    background-color: #333;
-  }
-
-  :before {
-    transform: rotate(45deg);
-  }
-  :after {
-    transform: rotate(-45deg);
-  }
-}
-
-.expandButton {
-  position: absolute;
-  right: 38px;
   top: 9.5px;
   opacity: 0.5;
 
-  :hover {
+    :hover {
     opacity: 1;
     cursor: pointer;
+    }
   }
-}
+
+  .deleteButton {
+    right: 14px;
+  }
+
+  .expandButton {
+    right: 38px;
+  }
 
 .sheetMusicCard {
   min-width: 25%;
@@ -100,9 +80,32 @@ const GlobalStyle = createGlobalStyle`
   }
 }
 
-#inline {
-  display: inline-block,
-  margin-right: 20px,
+.signUpJumbo {
+  background-image: url(${PianoKeys});
+  background-size: cover;
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.search {
+  color: #aaa;
+  max-width: 60%;
+  margin-bottom: 25px;
+
+  .searchIcon {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+  }
+
+  .searchBox {
+    padding-left: 2.375rem;
+  }
 }
 `;
 

@@ -9,7 +9,6 @@ export default function Dashboard() {
 
   return (
     <>
-      {/* <Bookmarks /> */}
       <WelcomeMessage />
       <Cards />
     </>

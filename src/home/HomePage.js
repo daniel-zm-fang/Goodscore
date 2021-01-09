@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Fade, Jumbotron, Container, Row, Col } from "react-bootstrap";
 import Background from "./images/home_bg.jpg";
 import clock from "./images/clock.png";
 import search from "./images/search.png";
 import friends from "./images/friends.png";
-import SignUp from "../auth/SignUpPage"
+import SignUp from "../auth/SignUpPage";
 
 const jumboStyle = {
   minHeight: "40vw",
@@ -26,13 +26,15 @@ const imgStyle = {
   backgroundColor: "transparent",
 };
 
-export default function HomePage() {
+function HomePage() {
   const [showSignUp, setShowSignUp] = useState(false);
-  const handleShowSignUp = setShowSignUp(!showSignUp);
+  const handleShowSignUp = () => {
+    setShowSignUp(!showSignUp);
+  };
 
   return (
     <>
-    <SignUp show={showSignUp} close={handleShowSignUp} />
+      <SignUp show={showSignUp} close={handleShowSignUp} />
       <Jumbotron fluid style={jumboStyle}>
         <Fade in={true}>
           <h1
@@ -59,7 +61,7 @@ export default function HomePage() {
             <div className="w-75 " style={{ margin: "0 auto" }}>
               <h2 className="text-center">Explore</h2>
               <p className="text-center">
-                Learn new songs that suit your skill and taste.
+                Discover new sheet music that suit your skill and taste.
               </p>
             </div>
           </Col>
@@ -68,18 +70,17 @@ export default function HomePage() {
             <div className="w-75 " style={{ margin: "0 auto" }}>
               <h2 className="text-center">Community</h2>
               <p className="text-center">
-                Connect with others to share your favorite tunes.
+                Connect with other users to share your favorite tunes.
               </p>
             </div>
           </Col>
         </Row>
       </Container>
-      <Jumbotron className="bg-dark">
-        <h1 className="text-light text-center user-select-none">
-          Sign up to get started
-        </h1>
+      <Jumbotron fluid className="signUpJumbo" onClick={handleShowSignUp}>
+        <h1 className="text-light text-center">Sign up to get started</h1>
       </Jumbotron>
-      
     </>
   );
 }
+
+export default HomePage;

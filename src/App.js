@@ -1,5 +1,5 @@
 import GlobalStyle from "./theme/globalStyles";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import Dashboard from "./dashboard/Dashboard";
 import Explore from "./explore/Explore";
@@ -21,7 +21,7 @@ function App() {
         <GlobalStyle />
         <Header />
         <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/explore" component={Explore} />
           <PrivateRoute path="/community" component={Community} />
