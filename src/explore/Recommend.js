@@ -1,74 +1,92 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Form, CardDeck, Card } from "react-bootstrap";
-import { getAllComposers } from "../firebase";
+import { Container, Button, Form, Card } from "react-bootstrap";
+import { getAllComposers, addSong } from "../firebase";
+import { useAuth } from "../components/AuthContext";
 
 function Recommend() {
   const [composers, setComposers] = useState([]);
   const [composer, setComposer] = useState("beethoven");
   const [songs, setSongs] = useState([]);
-
-  function random() {
-    let randComp = composers[Math.floor(Math.random() * composers.length)];
-    setComposer(randComp);
-  }
+  const [startIdx, setIdx] = useState(0);
+  const numCards = 6;
+  const { currUser } = useAuth();
 
   function refresh() {
+    setIdx(startIdx + numCards);
+    if (startIdx + numCards >= songs.length) {
+      let index = composers.indexOf(composer);
+      index++;
+      if (index >= composers.length) {
+        index = 0;
+      }
+      setIdx(0);
+      setComposer(composers[index]);
+      getDeezer();
+    }
+  }
+
+  function getDeezer() {
     let proxyurl = "http://localhost:8080/";
     let url = "https://api.deezer.com/search?q=artist:" + composer;
     fetch(proxyurl + url)
       .then((response) => response.json())
       .then((data) => {
-        setSongs(data.data.slice(0, 3));
-        console.log(songs);
-      })
-    
+        setSongs(data.data);
+      });
   }
 
   useEffect(() => {
     getAllComposers().then((data) => {
       setComposers(data);
     });
-    //random();
-    refresh();
+    getDeezer();
   }, []);
+
+  useEffect(() => {
+    getDeezer();
+  }, [composer]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    refresh(event.target.searchComposer.value);
+    setComposer(event.target.searchComposer.value);
+    setIdx(0);
   };
 
-  const handleAdd = (event) => {
-    
-  }
-
   return (
-    <Container className="mx-5">
+    <Container fluid className="mx-5">
       <h3 className="my-5">Add similar sheet music</h3>
       <Form className="search" onSubmit={handleSubmit}>
         <span className="fa fa-search searchIcon" />
         <Form.Control
           type="text"
           className="searchBox"
-          placeholder="Search"
+          placeholder="Type another composer's name"
           name="searchComposer"
         />
-        <Button variant="dark" type="submit">
+        <Button className="my-3" variant="dark" type="submit">
           Search
         </Button>
       </Form>
-      <CardDeck className="m-2 justify-content-center">
-        {songs.map((song, index) => (
-          <Card className="m-2 sm-1 sheetMusicCard">
-            <Card.Title>{song.title}</Card.Title>
-            <Card.Img variant="top" src={song.album.cover} />
-            <audio controls>
-              <source src={song.preview} type="audio/mpeg" />
-            </audio>
-            <Button onClick={handleAdd}>Add to Library</Button>
-            <Card.Body></Card.Body>
+
+      <div className="row">
+        {songs.slice(startIdx, startIdx + numCards).map((song, index) => (
+          <Card className="col-sm-1 col-md-5 col-lg-3 mx-4 mb-4 pt-3 text-center">
+            <Card.Img variant="top" src={song.artist.picture_big} />
+            <Card.Body>
+              <h5>{song.title}</h5>
+              <audio className="audioPlayer" src={song.preview} controls />
+              <Button
+                className="mt-2"
+                onClick={() => {
+                  addSong(currUser.uid, song.title, composer);
+                }}
+              >
+                Add to Library
+              </Button>
+            </Card.Body>
           </Card>
         ))}
-      </CardDeck>
+      </div>
       <Button onClick={refresh}>Refresh</Button>
     </Container>
   );

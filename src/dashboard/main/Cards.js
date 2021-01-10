@@ -75,13 +75,13 @@ function Cards() {
         ))}
       </CardDeck>
       <Button
-        className="m-4 px-4 py-1"
+        className="m-4 px-4 py-3"
         as={Link}
         to="/explore"
         variant="outline-dark"
         size="lg"
       >
-        <b style={{ fontSize: "50px" }}>+</b>
+        <i className="fas fa-plus" />
       </Button>
     </>
   );

@@ -24,7 +24,7 @@ function Manual() {
   };
 
   return (
-    <Container className="mx-5">
+    <Container className="mx-5 mb-5">
       <h3 className="my-5">Add a custom sheet music</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group>

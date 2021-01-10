@@ -6,13 +6,15 @@ import { useAuth } from "../../components/AuthContext";
 function SheetMusicCard({ song, showModal }) {
   const [songData, setSongData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [click, setClick] = useState("expand");
+  const [click, setClick] = useState("compress");
+  const [songImg, setSongImg] = useState();
   const { currUser } = useAuth();
 
   useEffect(() => {
     getSongData(song.name).then((data) => {
       setSongData(data);
       setLoading(false);
+      getDeezer();
     });
   }, [song.name]);
 
@@ -25,6 +27,19 @@ function SheetMusicCard({ song, showModal }) {
     event.preventDefault();
     updateSong(currUser.uid, song.name, event.target.newProgress.value);
   };
+
+  function getDeezer() {
+    let proxyurl = "http://localhost:8080/";
+    let url = "https://api.deezer.com/search?q=artist:" + songData.composer;
+    fetch(proxyurl + url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.data[0].album.cover);
+        if (data.data.length !== 0) {
+          setSongImg(data.data[0].artist.picture_big);
+        }
+      });
+  }
 
   const details = (
     <Form onSubmit={handleSubmit}>
@@ -71,7 +86,7 @@ function SheetMusicCard({ song, showModal }) {
       ></i>
       <Card.Body>
         <Card.Title>{song.name}</Card.Title>
-        <Card.Img variant="top" src="" />
+        <Card.Img variant="top" src={songImg} />
         <Card.Text>
           Composed by: <b>{!loading && songData.composer}</b>
         </Card.Text>
