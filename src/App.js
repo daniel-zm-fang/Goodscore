@@ -21,7 +21,7 @@ function App() {
         <GlobalStyle />
         <Header />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <PrivateRoute exact path="/" component={HomePage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/explore" component={Explore} />
           <PrivateRoute path="/community" component={Community} />

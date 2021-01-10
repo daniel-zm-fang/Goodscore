@@ -1,53 +1,13 @@
-const express = require("express");
-require("firebase/firestore");
-const app = express();
-const port = 8080;
+// Listen on a specific host via the HOST environment variable
+var host = process.env.HOST || 'localhost';
+// Listen on a specific port via the PORT environment variable
+var port = process.env.PORT || 8080;
 
-//firebase init
-// var admin = require("firebase-admin");
-
-// var serviceAccount = require("path/to/serviceAccountKey.json");
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount)
-// });
-// const db = admin.firestore();
-
-// test data for now, use MongoDB later
-var testData = [
-  {
-    name: "song1",
-    composer: "edward",
-    progress: 50,
-  },
-  {
-    name: "song2",
-    composer: "daniel",
-    progress: 80,
-  },
-  {
-    name: "song3",
-    composer: "eric",
-    progress: 100,
-  },
-];
-
-app.get("/test", (req, res) => {
-  res.send(testData);
+var cors_proxy = require('cors-anywhere');
+cors_proxy.createServer({
+    originWhitelist: [], // Allow all origins
+    requireHeader: ['origin', 'x-requested-with'],
+    removeHeaders: ['cookie', 'cookie2']
+}).listen(port, host, function() {
+    console.log('Running CORS Anywhere on ' + host + ':' + port);
 });
-
-app.post("/add", (req, res) => {
-  var data = {
-    name: req.body.name,
-    composer: req.body.composer,
-    progress: 0,
-  };
-  testData.push(data);
-  console.log(testData);
-});
-
-// app.post("/del", (req, res) => {
-
-// });
-
-app.listen(port);

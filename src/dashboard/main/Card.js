@@ -71,7 +71,7 @@ function SheetMusicCard({ song, showModal }) {
       ></i>
       <Card.Body>
         <Card.Title>{song.name}</Card.Title>
-        <Card.Img variant="top" src="../../theme/evening.png" />
+        <Card.Img variant="top" src="" />
         <Card.Text>
           Composed by: <b>{!loading && songData.composer}</b>
         </Card.Text>
