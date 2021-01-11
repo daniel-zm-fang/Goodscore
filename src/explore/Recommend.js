@@ -26,7 +26,7 @@ function Recommend() {
   }
 
   function getDeezer() {
-    let proxyurl = "http://localhost:8080/";
+    let proxyurl = "https://cors-proxy-unlimited.herokuapp.com/";
     let url = "https://api.deezer.com/search?q=artist:" + composer;
     fetch(proxyurl + url)
       .then((response) => response.json())
