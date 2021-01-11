@@ -3,7 +3,6 @@ import Morning from "./morning.png";
 import Afternoon from "./afternoon.png";
 import Evening from "./evening.png";
 import PianoKeys from "../home/images/piano.jpg";
-import ReactAudioPlayer from "react-audio-player";
 
 const GlobalStyle = createGlobalStyle`
   .button {
