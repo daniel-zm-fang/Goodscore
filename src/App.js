@@ -1,10 +1,9 @@
 import GlobalStyle from "./theme/globalStyles";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import Dashboard from "./dashboard/Dashboard";
 import Explore from "./explore/Explore";
-import Community from "./dashboard/components/Community";
-import Feedback from "./dashboard/components/Feedback";
+import Friends from "./dashboard/main/Friends";
 import Header from "./home/Header.js";
 import AuthProvider from "./components/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
@@ -24,8 +23,7 @@ function App() {
           <PrivateRoute exact path="/" component={HomePage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/explore" component={Explore} />
-          <PrivateRoute path="/community" component={Community} />
-          <PrivateRoute path="/feedback" component={Feedback} />
+          <PrivateRoute path="/friends" component={Friends} />
         </Switch>
       </AuthProvider>
     </Router>

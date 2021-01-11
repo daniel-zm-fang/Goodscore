@@ -34,7 +34,6 @@ function SheetMusicCard({ song, showModal }) {
     fetch(proxyurl + url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data[0].album.cover);
         if (data.data.length !== 0) {
           setSongImg(data.data[0].artist.picture_big);
         }

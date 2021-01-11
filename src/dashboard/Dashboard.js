@@ -1,16 +1,16 @@
 import React from "react";
 import WelcomeMessage from "./WelcomeMessage";
 import Cards from "./main/Cards";
-// import Bookmarks from "./components/Bookmarks.js";
-// import firebase from "../firebase";
+// import Friends from "./main/Friends";
 
-export default function Dashboard() {
-  // const songs = firebase.firestore().collection("songs");
-
+function Dashboard() {
   return (
     <>
       <WelcomeMessage />
+      {/* <Friends /> */}
       <Cards />
     </>
   );
 }
+
+export default Dashboard;
