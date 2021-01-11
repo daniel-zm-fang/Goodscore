@@ -3,12 +3,12 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyCsF75H_ScTCs2aJt0M3S5MR64bQkGZ824",
-  authDomain: "goodscore-39e11.firebaseapp.com",
-  projectId: "goodscore-39e11",
-  storageBucket: "goodscore-39e11.appspot.com",
-  messagingSenderId: "877154652298",
-  appId: "1:877154652298:web:fbdbd773ecdf24608a5d73",
+  apiKey: "AIzaSyBlKZ7Jf7tazYnxHHkmLsGB4TD7mLX1JIE",
+  authDomain: "goodscore-dev.firebaseapp.com",
+  projectId: "goodscore-dev",
+  storageBucket: "goodscore-dev.appspot.com",
+  messagingSenderId: "202095644827",
+  appId: "1:202095644827:web:132f453986bc3de694763e",
 });
 
 const db = firebase.firestore();
