@@ -18,7 +18,7 @@ function Cards() {
   async function addUserHelper() {
     const exist = await checkUserExist(currUser.uid);
     if (!exist) {
-      addUser(currUser.uid);
+      addUser(currUser.uid, currUser.email.split("@")[0]);
     }
   }
 

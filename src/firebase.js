@@ -3,12 +3,12 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyBlKZ7Jf7tazYnxHHkmLsGB4TD7mLX1JIE",
-  authDomain: "goodscore-dev.firebaseapp.com",
-  projectId: "goodscore-dev",
-  storageBucket: "goodscore-dev.appspot.com",
-  messagingSenderId: "202095644827",
-  appId: "1:202095644827:web:132f453986bc3de694763e",
+  apiKey: "AIzaSyCsF75H_ScTCs2aJt0M3S5MR64bQkGZ824",
+  authDomain: "goodscore-39e11.firebaseapp.com",
+  projectId: "goodscore-39e11",
+  storageBucket: "goodscore-39e11.appspot.com",
+  messagingSenderId: "877154652298",
+  appId: "1:877154652298:web:fbdbd773ecdf24608a5d73",
 });
 
 const db = firebase.firestore();
@@ -31,10 +31,12 @@ async function checkUserExist(userID) {
   return false;
 }
 
-async function addUser(userID) {
+async function addUser(userID, userName) {
   users.doc(userID).set({
+    name: userName,
     friends: [],
     songs: [],
+    pendingFriendRequests: [],
   });
 }
 
@@ -43,13 +45,14 @@ async function getSongData(songName) {
   return doc.data();
 }
 
-async function getSongsFromUser(userID) {
-  try {
-    const doc = await users.doc(userID).get();
-    return doc.data().songs;
-  } catch (err) {
-    console.log(err);
-  }
+async function getFriends(userID) {
+  const doc = await users.doc(userID).get();
+  return doc.data().friends;
+}
+
+async function getUsername(userID) {
+  const doc = await users.doc(userID).get();
+  return doc.data().name;
 }
 
 async function addSong(userID, songName, composerName, progress = 0) {
@@ -91,6 +94,35 @@ async function getAllComposers() {
   return temp.docs.map((doc) => doc.data().composer);
 }
 
+async function sendFriendRequest(userID, friendID) {
+  const exist = await checkUserExist(friendID);
+  if (!exist) {
+    return "user not found";
+  }
+  users.doc(friendID).update({
+    pendingFriendRequests: firebase.firestore.arrayUnion(userID),
+  });
+}
+
+async function deleteFriendRequest(userID, friendID) {
+  const temp = await users.doc(friendID).get();
+  users.doc(friendID).update({
+    pendingFriendRequests: temp
+      .data()
+      .pendingFriendRequests.filter((request) => request !== userID),
+  });
+}
+
+async function acceptFriendRequest(userID, friendID) {
+  deleteFriendRequest(userID, friendID);
+  users.doc(userID).update({
+    friends: firebase.firestore.arrayUnion(friendID),
+  });
+  users.doc(friendID).update({
+    friends: firebase.firestore.arrayUnion(userID),
+  });
+}
+
 export const auth = app.auth();
 export default app;
 export {
@@ -100,9 +132,13 @@ export {
   checkUserExist,
   addUser,
   getSongData,
-  getSongsFromUser,
+  getFriends,
+  getUsername,
   addSong,
   deleteSong,
   updateSong,
   getAllComposers,
+  sendFriendRequest,
+  deleteFriendRequest,
+  acceptFriendRequest,
 };
